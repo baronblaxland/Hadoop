@@ -1,0 +1,21 @@
+% access file
+
+more /etc/hadoop/conf/hdfs-site.xml
+
+% no security user.name=<USER>&
+
+%HTTP GET request
+curl -i "http://quickstart.cloudera:14000/webhdfs/v1/user/clouders?user.name=cloudera&op=GETFILESTATUS"
+
+%HTTP PUT request
+
+
+curl -i -X PUT "http://quickstart.cloudera:14000/webhdfs/v1/user/clouders?user.name=cloudera&op=MKDIRS&permission=755"
+
+
+dd if=/dev/urandom of=sample.txt bs=64M count=16
+
+hdfs dfs -put sample.txt /user/text
+
+curl -i "http://quickstart.clouders:14000/webhdfs/v1/user/test?user.name=cloudera&op=GETCONTENTSUMMARY"
+

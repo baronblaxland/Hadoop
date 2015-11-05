@@ -1,0 +1,38 @@
+%All done on a virtual machine on laptop (Cloudera)
+% List files in HDFS
+
+hdfs dfs -ls /
+
+% make a directory
+
+hdfs dfs -mkdir /user/test
+
+% Create file with random data with a block size of 64
+
+dd if=/dev/urandom of=sample.txt bs=64M count=16
+
+%Add file to HDFS
+
+hdfs dfs -put sample.txt /user/test
+
+%Check file is there
+
+hdfs dfs -ls /user/test/sample.txt
+
+% Give a lot of details obout the file e.g. size, blocks
+hdfs fsck /user/test/sample.txt
+
+% HDFS cluster summary report
+
+hdfs dfsadmin -report
+
+
+%Base class in JAva could also be done in Python 
+% Python is is what I would primarily use
+
+org.apache.hadoop.fs.FileSystem
+
+FSDataInputStream
+FSDataOutputStream
+
+get open create
