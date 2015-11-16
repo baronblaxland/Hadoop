@@ -1,0 +1,38 @@
+PYSPARK_DRIVER_PYTHON=ipython pyspark
+
+integer_RDD = sc.parallelize(range(10),3)
+
+integer_RDD.collect()
+
+
+# Maintain splitting in partitions check partitions
+
+integer_RDD.glom().collect()
+
+# Local
+text_RDD = sc.textFile("file:///home/cloudera/testfile1")
+# HDFS
+text_RDD = sc.textFile ("/user/cloudera/input/testfile1")
+
+text_RDD.take(1)
+
+
+######### Recreate previous join example
+
+def split_words(line):
+    return line.split()
+
+def create_pait(word):
+    return(word, 1)
+
+pairs_RDD=text_RDD.flatMap(split_words).map
+(create_pair)
+
+pairs_RDD.collect()
+
+def sum_counts(a,b):
+    return a+b
+
+wordcounts_RDD = pairs_RDD.reduceByKey(sum_counts)
+
+wordcounts_RDD.collect()
